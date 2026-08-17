@@ -1,0 +1,18 @@
+# Cleaned-up map of the AutoDRIVE F1TENTH track.
+#
+# Copied from autodrive_f1tenth/maps/track.{pgm,yaml}, which is the master
+# copy - the particle filter's launch file only looks inside this package's own
+# maps/ dir, so the pair is duplicated here. Re-copy both files after editing.
+#
+# origin/resolution are carried over verbatim from the map_saver output. Do NOT
+# change them by hand: they define where the map frame sits relative to the
+# image, so a wrong value silently offsets every pose that references the map.
+# Editing pixels is safe; editing geometry is not.
+
+image: track.pgm
+mode: trinary
+resolution: 0.05
+origin: [-3.91, -4.56, 0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.25

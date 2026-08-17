@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+
+  <name>autodrive_f1tenth</name>
+  <version>0.1.0</version>
+  <description>AutoDRIVE Ecosystem ROS 2 Package for F1TENTH</description>
+
+  <maintainer email="tsamak@clemson.edu">Tanmay Vilas Samak</maintainer>
+  <maintainer email="csamak@clemson.edu">Chinmay Vilas Samak</maintainer>
+
+  <license>BSD</license>
+
+  <url type="repository">https://autodrive-ecosystem.github.io</url>
+  <url type="repository">https://github.com/Tinker-Twins/AutoDRIVE</url>
+  <url type="bugtracker">https://github.com/Tinker-Twins/AutoDRIVE/issues</url>
+
+  <author email="tsamak@clemson.edu">Tanmay Vilas Samak</author>
+  <author email="csamak@clemson.edu">Chinmay Vilas Samak</author>
+
+  <!-- ROS 2 client library -->
+  <depend>rclpy</depend>
+
+  <!-- Message packages used by the bridges and config -->
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+
+  <!-- Wheel odometry synchronises the two encoder topics -->
+  <depend>message_filters</depend>
+
+  <!-- Localisation stack: EKF owns odom->base, slam_toolbox owns map->odom -->
+  <exec_depend>robot_localization</exec_depend>
+  <exec_depend>slam_toolbox</exec_depend>
+  <exec_depend>nav2_map_server</exec_depend>
+
+  <!-- Transforms: tf2_ros for broadcasting, tf_transformations for euler->quaternion -->
+  <depend>tf2_ros</depend>
+  <depend>tf_transformations</depend>
+
+  <!-- Image conversion between OpenCV/numpy arrays and sensor_msgs/Image.
+       Disabled: the camera path is commented out in autodrive_incoming_bridge.py.
+       Re-enable this together with the camera code and `pillow` in the Dockerfile. -->
+  <!-- <depend>cv_bridge</depend> -->
+
+  <!-- Numeric processing -->
+  <exec_depend>python3-numpy</exec_depend>
+
+  <!--
+    Not declared as rosdep keys, install via pip (versions are load-bearing):
+      attrdict3==2.0.2        - attrdict 2.0.1 breaks on Python 3.10 (collections.Mapping)
+      python-socketio==4.2.0  - wire protocol must match the Unity simulator client
+      python-engineio==3.13.0 - must pair with python-socketio 4.2.0
+      gevent>=22.10, gevent-websocket==0.10.1
+      pillow                  - only needed if the camera decode is enabled
+  -->
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+
+</package>
