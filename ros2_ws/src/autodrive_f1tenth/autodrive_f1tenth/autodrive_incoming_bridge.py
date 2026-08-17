@@ -54,6 +54,9 @@ import configparser # Parsing shared configuration file(s)
 import threading # Run the ROS 2 executor alongside the blocking WebSocket server
 import autodrive_f1tenth.config as config # AutoDRIVE Ecosystem ROS 2 configuration for F1TENTH vehicle
 
+
+import autodrive_f1tenth.lowlatency as lowlatency
+
 ################################################################################
 
 # Global declarations
